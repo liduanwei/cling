@@ -15,6 +15,9 @@
 
 package org.fourthline.cling.transport.impl;
 
+import sun.net.www.protocol.http.Handler;
+import sun.net.www.protocol.http.HttpURLConnection;
+
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.ProtocolException;
@@ -45,7 +48,7 @@ public class FixedSunURLStreamHandler implements URLStreamHandlerFactory {
     public URLStreamHandler createURLStreamHandler(String protocol) {
         log.fine("Creating new URLStreamHandler for protocol: " + protocol);
         if ("http".equals(protocol)) {
-            return new sun.net.www.protocol.http.Handler() {
+            return new Handler() {
 
                 protected java.net.URLConnection openConnection(URL u) throws IOException {
                     return openConnection(u, null);
@@ -60,14 +63,14 @@ public class FixedSunURLStreamHandler implements URLStreamHandlerFactory {
         }
     }
 
-    static class UpnpURLConnection extends sun.net.www.protocol.http.HttpURLConnection {
+    static class UpnpURLConnection extends HttpURLConnection {
 
         private static final String[] methods = {
                 "GET", "POST", "HEAD", "OPTIONS", "PUT", "DELETE",
                 "SUBSCRIBE", "UNSUBSCRIBE", "NOTIFY"
         };
 
-        protected UpnpURLConnection(URL u, sun.net.www.protocol.http.Handler handler) throws IOException {
+        protected UpnpURLConnection(URL u, Handler handler) throws IOException {
             super(u, handler);
         }
 

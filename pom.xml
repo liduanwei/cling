@@ -30,7 +30,7 @@
 
     <modules>
         <module>core</module>
-        <module>demo</module>
+<!--        <module>demo</module>-->
         <module>workbench</module>
         <module>website</module>
         <module>distribution</module>
@@ -81,8 +81,8 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.7</maven.compiler.source>
-        <maven.compiler.target>1.7</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
 
         <seamless.version>1.1.2</seamless.version>
         <lemma.version>1.1.1</lemma.version>
@@ -143,6 +143,16 @@
                 <plugin>
                     <artifactId>maven-assembly-plugin</artifactId>
                     <version>2.5.3</version>
+                    <configuration>
+                        <archive>
+                            <manifest>
+                                <mainClass>fully.qualified.MainClass</mainClass>
+                            </manifest>
+                        </archive>
+                        <descriptorRefs>
+                            <descriptorRef>jar-with-dependencies</descriptorRef>
+                        </descriptorRefs>
+                    </configuration>
                 </plugin>
 
                 <!-- Unit tests -->
@@ -242,10 +252,17 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.7.0</version>
+                    <version>3.8.0</version>
                     <configuration>
                         <source>${maven.compiler.source}</source>
                         <target>${maven.compiler.target}</target>
+<!--                        <fork>true</fork>-->
+<!--                        <compilerArgs>-->
+<!--                            <arg>&#45;&#45;add-exports</arg>-->
+<!--                            <arg>java.base/sun.net.www.protocol.http=ALL-UNNAMED</arg>-->
+<!--                            <arg>&#45;&#45;add-exports</arg>-->
+<!--                            <arg>java.base/sun.net.www.protocol.https=ALL-UNNAMED</arg>-->
+<!--                        </compilerArgs>-->
                     </configuration>
                 </plugin>
                 <plugin>

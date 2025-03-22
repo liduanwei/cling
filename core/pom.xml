@@ -173,6 +173,11 @@
             <optional>true</optional>
         </dependency>
         <dependency>
+            <groupId>javax.annotation</groupId>
+            <artifactId>jsr250-api</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
             <groupId>com.google.android</groupId>
             <artifactId>android</artifactId>
             <version>${android.version}</version>

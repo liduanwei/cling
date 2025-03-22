@@ -239,6 +239,7 @@ public class RetrieveRemoteDescriptors implements Runnable {
         	}
 
         } catch (DescriptorBindingException ex) {
+            ex.printStackTrace();
             log.warning("Could not hydrate device or its services from descriptor: " + rd);
             log.warning("Cause was: " + Exceptions.unwrap(ex));
             if (describedDevice != null && notifiedStart)
